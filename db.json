@@ -1,7 +1,7 @@
 {
   "tasks": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Підготувати макет головної сторінки",
       "description": "Узгодити структуру блоків і кольорову палітру",
       "status": "Done",
@@ -9,7 +9,7 @@
       "createdAt": "2026-09-20T08:10:00.000Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Налаштувати авторизацію",
       "description": "Реалізувати вхід через email та пароль",
       "status": "In Progress",
@@ -17,7 +17,7 @@
       "createdAt": "2026-09-24T10:25:00.000Z"
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Виправити баг із випадаючим меню",
       "description": "Меню не закривається при кліку поза його межами",
       "status": "Todo",
@@ -25,7 +25,7 @@
       "createdAt": "2026-09-24T15:40:00.000Z"
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Додати пагінацію до списку",
       "description": "Показувати по 10 карток на сторінці",
       "status": "In Progress",
@@ -33,7 +33,7 @@
       "createdAt": "2026-09-30T11:05:00.000Z"
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Оптимізувати зображення",
       "description": "Стиснути картинки та додати lazy loading",
       "status": "Done",
@@ -41,12 +41,41 @@
       "createdAt": "2026-10-02T13:50:00.000Z"
     },
     {
-      "id": 6,
+      "id": "6",
       "title": "Написати unit-тести для утиліт",
       "description": "Покрити хелпери роботи з датами та пошуку",
       "status": "Todo",
       "priority": "Medium",
       "createdAt": "2026-10-05T09:30:00.000Z"
+    },
+    {
+      "createdAt": "2026-10-06T09:29:32.698Z",
+      "id": "XJxUlLOt3Yk"
+    },
+    {
+      "title": "Test Task",
+      "description": "Test",
+      "priority": "Medium",
+      "status": "Todo",
+      "createdAt": "2026-10-06T09:30:37.020Z",
+      "id": "qZORU0foM1o"
+    },
+    {
+      "title": "Test2",
+      "description": "2",
+      "priority": "Medium",
+      "status": "Todo",
+      "createdAt": "2026-10-06T09:30:57.118Z",
+      "id": "NBUtiMjHAU0"
+    },
+    {
+      "title": "Test 3",
+      "description": "3",
+      "priority": "Medium",
+      "status": "Todo",
+      "createdAt": "2026-10-06T09:32:17.321Z",
+      "id": "SwmSAUkMRrI"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

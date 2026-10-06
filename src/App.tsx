@@ -11,7 +11,7 @@ import { useItems } from './hooks/useItems'
 
 function App() {
   const [dialogOpen, setDialogOpen] = useState<boolean>(false)
-  const { items, date, setDate, setQuery, error, loading } = useItems()
+  const { items, date, setDate, setQuery, error, loading, fetchTasks } = useItems()
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -50,7 +50,7 @@ function App() {
           </Container>
         </Box>
 
-        <AddItemDialog open={dialogOpen} onClose={() => setDialogOpen(false)} onAdd={() => {}} />
+        <AddItemDialog open={dialogOpen} onClose={() => setDialogOpen(false)} refetch={fetchTasks} />
       </Container>
     </LocalizationProvider>
   )
