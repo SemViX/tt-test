@@ -25,10 +25,10 @@ export const apiFetch = {
     get: <T>(path:string) => {
         return fetcher<T>(path)
     },
-    post: <T>(path:string, body:undefined) => {
+    post: <T>(path:string, body:unknown) => {
         return fetcher<T>(path, {method:"POST", body:JSON.stringify(body)})
     },
-    patch: <T>(path:string, body:undefined) => {
+    patch: <T>(path:string, body:unknown) => {
         return fetcher<T>(path, {method:"PATCH", body:JSON.stringify(body)})
     },
     delete:<T>(path:string) => {
