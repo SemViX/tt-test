@@ -1,0 +1,91 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Підготувати макет головної сторінки",
+      "description": "Узгодити структуру блоків і кольорову палітру",
+      "status": "In Progress",
+      "priority": "Low",
+      "createdAt": "2026-09-20T08:10:00.000Z"
+    },
+    {
+      "id": "2",
+      "title": "Налаштувати авторизацію",
+      "description": "Реалізувати вхід через email та пароль",
+      "status": "In Progress",
+      "priority": "High",
+      "createdAt": "2026-09-24T10:25:00.000Z"
+    },
+    {
+      "id": "3",
+      "title": "Виправити баг із випадаючим меню",
+      "description": "Меню не закривається при кліку поза його межами",
+      "status": "Todo",
+      "priority": "High",
+      "createdAt": "2026-09-24T15:40:00.000Z"
+    },
+    {
+      "id": "4",
+      "title": "Додати пагінацію до списку",
+      "description": "Показувати по 10 карток на сторінці",
+      "status": "In Progress",
+      "priority": "Low",
+      "createdAt": "2026-09-30T11:05:00.000Z"
+    },
+    {
+      "id": "5",
+      "title": "Оптимізувати зображення",
+      "description": "Стиснути картинки та додати lazy loading",
+      "status": "Done",
+      "priority": "Low",
+      "createdAt": "2026-10-02T13:50:00.000Z"
+    },
+    {
+      "id": "6",
+      "title": "Написати unit-тести для утиліт",
+      "description": "Покрити хелпери роботи з датами та пошуку",
+      "status": "Todo",
+      "priority": "Medium",
+      "createdAt": "2026-10-05T09:30:00.000Z"
+    },
+    {
+      "title": "Test Task 5",
+      "description": "Test",
+      "priority": "Medium",
+      "status": "Todo",
+      "createdAt": "2026-10-06T09:30:37.020Z",
+      "id": "qZORU0foM1o"
+    },
+    {
+      "title": "Test2",
+      "description": "2",
+      "priority": "Medium",
+      "status": "Todo",
+      "createdAt": "2026-10-06T09:30:57.118Z",
+      "id": "NBUtiMjHAU0"
+    },
+    {
+      "title": "Matrix",
+      "description": "Sci-fi",
+      "priority": "Medium",
+      "status": "Todo",
+      "createdAt": "2026-10-06T09:33:38.003Z",
+      "id": "9xTyyh16De8"
+    },
+    {
+      "0": "Н",
+      "1": "о",
+      "2": "в",
+      "3": "а",
+      "4": " ",
+      "5": "н",
+      "6": "а",
+      "7": "з",
+      "8": "в",
+      "9": "а",
+      "createdAt": "2026-10-06T11:11:50.814Z",
+      "id": "tucXI7ar8Co"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -12,6 +12,6 @@ describe('DateFilter', () => {
       </LocalizationProvider>
     )
 
-    expect(screen.getAllByLabelText('Дата додавання').length).toBeGreaterThan(0)
+    expect(screen.getAllByLabelText('Дата').length).toBeGreaterThan(0)
   })
 })
