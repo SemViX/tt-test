@@ -1,18 +1,32 @@
-import { Stack, Typography } from '@mui/material'
-import type { Item } from '../items'
-import ItemCard from './ItemCard'
-import Section from './Section'
+import { Alert, CircularProgress, Stack, Typography } from "@mui/material";
+import ItemCard from "./ItemCard";
+import Section from "./Section";
+import type { Task } from "../types/task.type";
 
-export default function ItemList({ items }: { items: Item[] }) {
+interface Props {
+  items: Task[];
+  loading: boolean;
+  error: string | null;
+}
+
+export default function ItemList({ items, loading, error }: Props) {
   return (
     <Section tone="aqua">
-      <Stack spacing={1.5}>
-        {items.length === 0 ? (
-          <Typography color="text.secondary">Нічого не знайдено.</Typography>
-        ) : (
-          items.map((item) => <ItemCard key={item.id} item={item} />)
-        )}
-      </Stack>
+      {loading ? (
+        <Stack sx={{ py: 4, alignItems: "center" }}>
+          <CircularProgress />
+        </Stack>
+      ) : error ? (
+        <Alert severity="error">{error}</Alert>
+      ) : items.length === 0 ? (
+        <Typography color="text.secondary">Нічого не знайдено.</Typography>
+      ) : (
+        <Stack spacing={1.5}>
+          {items.map((item) => (
+            <ItemCard key={item.id} item={item} />
+          ))}
+        </Stack>
+      )}
     </Section>
-  )
+  );
 }

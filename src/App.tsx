@@ -11,12 +11,12 @@ import { useItems } from './hooks/useItems'
 
 function App() {
   const [dialogOpen, setDialogOpen] = useState<boolean>(false)
-  const { visible, date, setDate, setQuery, addItem } = useItems()
+  const { items, date, setDate, setQuery, error, loading } = useItems()
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Container maxWidth="sm" sx={{ py: 3, pb: 12 }}>
-        <Typography variant="h4" gutterBottom>Мої фільми</Typography>
+        <Typography variant="h4" gutterBottom>Мої завдання</Typography>
         <Stack spacing={2}>
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
@@ -38,7 +38,7 @@ function App() {
             <DateFilter value={date} onChange={setDate} />
             <SearchBar onSearch={setQuery} />
           </Stack>
-          <ItemList items={visible} />
+          <ItemList items={items} error={error} loading={loading} />
         </Stack>
 
          <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, p: 2, bgcolor: 'background.paper' }}>
@@ -50,7 +50,7 @@ function App() {
           </Container>
         </Box>
 
-        <AddItemDialog open={dialogOpen} onClose={() => setDialogOpen(false)} onAdd={addItem} />
+        <AddItemDialog open={dialogOpen} onClose={() => setDialogOpen(false)} onAdd={() => {}} />
       </Container>
     </LocalizationProvider>
   )

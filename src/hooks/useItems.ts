@@ -1,27 +1,34 @@
-import { useMemo, useState } from "react";
-import dayjs, { type Dayjs } from "dayjs";
-import { createInitialItems, filterItems, type Item } from "../items";
+import { useEffect, useState } from "react";
+import { type Dayjs } from "dayjs";
+import type { Task } from "../types/task.type";
+import { taskApi } from "../lib/api/taskApi";
 
 export function useItems() {
-  const [items, setItems] = useState<Item[]>(createInitialItems);
+  const [items, setItems] = useState<Task[]>([]);
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
   const [query, setQuery] = useState("");
   const [date, setDate] = useState<Dayjs | null>(null);
 
-  const visible = useMemo(
-    () => filterItems(items, query, date),
-    [items, query, date],
-  );
+  const fetchTasks = async () => {
+    try{
+      setLoading(true)
+      setError(null)
+      const data = await taskApi.getList()
+      setItems(data)
+    }
+    catch{
+      setError("Не вдалося завантажити задачі")
+    }
+    finally{
+      setLoading(false)
+    }
+  }
 
-  const addItem = (title: string, description?: string) =>
-    setItems((prev) => [
-      {
-        id: Date.now(),
-        title,
-        description: description?.trim() || "Новий елемент",
-        createdAt: dayjs().toISOString(),
-      },
-      ...prev,
-    ]);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    void fetchTasks()
+  }, [])
 
-  return { visible, date, setDate, setQuery, addItem };
+  return { items, date, setDate, setQuery, error, fetchTasks, loading };
 }
