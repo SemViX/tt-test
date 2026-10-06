@@ -8,10 +8,12 @@ import ItemList from './components/ItemList'
 import AddItemDialog from './components/AddItemDialog'
 import { useState } from 'react'
 import { useItems } from './hooks/useItems'
+import SelectFilter from './components/SelectFilter'
+import { PRIORITIES, STATUSES } from './types/task.type'
 
 function App() {
   const [dialogOpen, setDialogOpen] = useState<boolean>(false)
-  const { items, date, setDate, setQuery, error, loading, fetchTasks } = useItems()
+  const { visible, date, setDate, setQuery, error, loading, fetchTasks, setPriority, setStatus, priority, status } = useItems()
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -38,7 +40,21 @@ function App() {
             <DateFilter value={date} onChange={setDate} />
             <SearchBar onSearch={setQuery} />
           </Stack>
-          <ItemList items={items} error={error} loading={loading} />
+          <Stack sx={{flexDirection:"row", gap:1}}>
+            <SelectFilter
+              label='Приоритет'
+              value={priority}
+              items={["All", ...PRIORITIES]}
+              onChange={setPriority}
+            />
+            <SelectFilter
+              label='Статус'
+              value={status}
+              items={["All", ...STATUSES]}
+              onChange={setStatus}
+            />
+          </Stack>
+          <ItemList items={visible} error={error} loading={loading} />
         </Stack>
 
          <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, p: 2, bgcolor: 'background.paper' }}>

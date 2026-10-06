@@ -5,12 +5,17 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  MenuItem,
-  Select,
   TextField,
 } from "@mui/material";
 import { taskApi } from "../lib/api/taskApi";
-import { PRIORITIES, STATUSES, type CreateTask, type Priority, type Status } from "../types/task.type";
+import {
+  PRIORITIES,
+  STATUSES,
+  type CreateTask,
+  type Priority,
+  type Status,
+} from "../types/task.type";
+import SelectFilter from "./SelectFilter";
 
 interface Props {
   open: boolean;
@@ -35,11 +40,11 @@ export default function AddItemDialog({ open, onClose, refetch }: Props) {
       status,
     };
 
-    taskApi.create(payload)
+    taskApi.create(payload);
     setTitle("");
     setDescription("");
     onClose();
-    refetch()
+    refetch();
   };
 
   return (
@@ -61,30 +66,18 @@ export default function AddItemDialog({ open, onClose, refetch }: Props) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <Select
+        <SelectFilter
           value={priority}
           label="Приоретет"
-          onChange={(e) => setPriority(e.target.value)}
-          defaultValue={priority}
-        >
-          {PRIORITIES.map((priority) => (
-            <MenuItem key={priority} value={priority}>
-              {priority}
-            </MenuItem>
-          ))}
-        </Select>
-        <Select
+          onChange={setPriority}
+          items={PRIORITIES}
+        />
+        <SelectFilter
           value={status}
+          onChange={setStatus}
           label="Статус"
-          onChange={(e) => setStatus(e.target.value)}
-          defaultValue={status}
-        >
-          {STATUSES.map((status) => (
-            <MenuItem key={status} value={status}>
-              {status}
-            </MenuItem>
-          ))}
-        </Select>
+          items={STATUSES}
+        />
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Скасувати</Button>
