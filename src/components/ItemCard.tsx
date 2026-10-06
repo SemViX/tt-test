@@ -1,10 +1,20 @@
-import { Card, CardContent, Typography } from "@mui/material";
+import { Button, Card, CardContent, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import type { Task } from "../types/task.type";
+import { taskApi } from "../lib/api/taskApi";
 
-export default function ItemCard({ item }: { item: Task }) {
+interface Props {
+  item: Task;
+  fetchTasks: () => void
+}
+
+export default function ItemCard({ item, fetchTasks }: Props) {
+  const onClick = async () => {
+    await taskApi.delete(item.id)
+    await fetchTasks()
+  }
   return (
-    <Card data-testid="item-card">
+    <Card data-testid="item-card" sx={{p:1}}>
       <CardContent>
         <Typography variant="h6">{item.title}</Typography>
         <Typography variant="body2" color="text.secondary">
@@ -20,6 +30,9 @@ export default function ItemCard({ item }: { item: Task }) {
           Додано: {dayjs(item.createdAt).format("DD.MM.YYYY HH:mm")}
         </Typography>
       </CardContent>
+      <Button variant="contained" color="error" onClick={onClick}>
+        Видалити
+      </Button>
     </Card>
   );
 }

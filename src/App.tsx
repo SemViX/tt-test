@@ -54,7 +54,7 @@ function App() {
               onChange={setStatus}
             />
           </Stack>
-          <ItemList items={visible} error={error} loading={loading} />
+          <ItemList items={visible} error={error} loading={loading} fetchTasks={fetchTasks} />
         </Stack>
 
          <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, p: 2, bgcolor: 'background.paper' }}>

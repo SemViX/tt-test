@@ -7,9 +7,10 @@ interface Props {
   items: Task[];
   loading: boolean;
   error: string | null;
+  fetchTasks: () => void;
 }
 
-export default function ItemList({ items, loading, error }: Props) {
+export default function ItemList({ items, loading, error, fetchTasks }: Props) {
   return (
     <Section tone="aqua">
       {loading ? (
@@ -23,7 +24,7 @@ export default function ItemList({ items, loading, error }: Props) {
       ) : (
         <Stack spacing={1.5}>
           {items.map((item) => (
-            <ItemCard key={item.id} item={item} />
+            <ItemCard key={item.id} item={item} fetchTasks={fetchTasks}/>
           ))}
         </Stack>
       )}
