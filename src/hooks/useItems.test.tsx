@@ -3,15 +3,17 @@ import { describe, expect, it } from 'vitest'
 import { useItems } from './useItems'
 
 describe('useItems', () => {
-  it('adds a new item with the description', () => {
+  it('updates filters state', () => {
     const { result } = renderHook(() => useItems())
 
     act(() => {
-      result.current.addItem('Нова назва', 'Опис фільму')
+      result.current.setStatus('Todo')
+      result.current.setPriority('High')
+      result.current.setQuery('Matrix')
     })
 
-    expect(result.current.visible[0].title).toBe('Нова назва')
-    expect(result.current.visible[0].description).toBe('Опис фільму')
-    expect(new Date(result.current.visible[0].createdAt).toString()).not.toBe('Invalid Date')
+    expect(result.current.status).toBe('Todo')
+    expect(result.current.priority).toBe('High')
+    expect(result.current.visible).toEqual([])
   })
 })
