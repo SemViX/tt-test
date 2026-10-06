@@ -10,16 +10,18 @@ import { useState } from 'react'
 import { useItems } from './hooks/useItems'
 import SelectFilter from './components/SelectFilter'
 import { PRIORITIES, STATUSES } from './types/task.type'
+import TaskStats from './components/TaskStats'
 
 function App() {
   const [dialogOpen, setDialogOpen] = useState<boolean>(false)
-  const { visible, date, setDate, setQuery, error, loading, fetchTasks, setPriority, setStatus, priority, status, addItem } = useItems()
+  const { items, visible, date, setDate, setQuery, error, loading, fetchTasks, setPriority, setStatus, priority, status, addItem } = useItems()
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Container maxWidth="sm" sx={{ py: 3, pb: 12 }}>
         <Typography variant="h4" gutterBottom>Мої завдання</Typography>
         <Stack spacing={2}>
+          <TaskStats items={items}/>
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
             sx={{
