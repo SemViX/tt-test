@@ -5,7 +5,7 @@ import { Box, Button, Container, Stack, Typography } from '@mui/material'
 import DateFilter from './components/DateFilter'
 import SearchBar from './components/SearchBar'
 import ItemList from './components/ItemList'
-import AddItemDialog from './components/AddItemDialog'
+import ItemFormDialog from './components/AddItemDialog'
 import { useState } from 'react'
 import { useItems } from './hooks/useItems'
 import SelectFilter from './components/SelectFilter'
@@ -13,7 +13,7 @@ import { PRIORITIES, STATUSES } from './types/task.type'
 
 function App() {
   const [dialogOpen, setDialogOpen] = useState<boolean>(false)
-  const { visible, date, setDate, setQuery, error, loading, fetchTasks, setPriority, setStatus, priority, status } = useItems()
+  const { visible, date, setDate, setQuery, error, loading, fetchTasks, setPriority, setStatus, priority, status, addItem } = useItems()
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -66,7 +66,7 @@ function App() {
           </Container>
         </Box>
 
-        <AddItemDialog open={dialogOpen} onClose={() => setDialogOpen(false)} refetch={fetchTasks} />
+        <ItemFormDialog open={dialogOpen} onClose={() => setDialogOpen(false)} onSubmit={(data) => addItem(data)}/>
       </Container>
     </LocalizationProvider>
   )

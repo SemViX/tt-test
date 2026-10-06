@@ -1,7 +1,10 @@
-import { Button, Card, CardContent, Typography } from "@mui/material";
+import { Button, Card, CardContent, Stack, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import type { Task } from "../types/task.type";
 import { taskApi } from "../lib/api/taskApi";
+import { useState } from "react";
+import ItemFormDialog from "./AddItemDialog";
+import { useItems } from "../hooks/useItems";
 
 interface Props {
   item: Task;
@@ -9,6 +12,8 @@ interface Props {
 }
 
 export default function ItemCard({ item, fetchTasks }: Props) {
+  const [editing, setEditing] = useState<boolean>(false)
+  const {updateItem} = useItems()
   const onClick = async () => {
     await taskApi.delete(item.id)
     await fetchTasks()
@@ -30,9 +35,15 @@ export default function ItemCard({ item, fetchTasks }: Props) {
           Додано: {dayjs(item.createdAt).format("DD.MM.YYYY HH:mm")}
         </Typography>
       </CardContent>
-      <Button variant="contained" color="error" onClick={onClick}>
-        Видалити
-      </Button>
+      <Stack sx={{flexDirection:"row", gap:1}}>
+        <Button variant="contained" color="error" onClick={onClick}>
+          Видалити
+        </Button>
+        <Button variant="contained" onClick={() => setEditing((prev) => !prev)}>
+          Редагувати
+        </Button>
+      </Stack>
+      <ItemFormDialog open={editing} onSubmit={(data) => updateItem(item.id, data)} onClose={() => setEditing(false)} task={item}/>
     </Card>
   );
 }

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import dayjs, { type Dayjs } from "dayjs";
-import type { Priority, Status, Task } from "../types/task.type";
+import type { CreateTask, Priority, Status, Task } from "../types/task.type";
 import { taskApi } from "../lib/api/taskApi";
 
 export function useItems() {
@@ -47,5 +47,30 @@ export function useItems() {
     });
   }, [items, query, date, status, priority]);
 
-  return { visible, items, date, setDate, setQuery, error, fetchTasks, loading, setPriority, setStatus, priority, status };
+  const updateItem = async (id: number, data: Partial<CreateTask>) => {
+    await taskApi.edit(id, data);
+    await fetchTasks();
+  };
+
+  const addItem = async (input: CreateTask) => {
+    await taskApi.create(input);
+    await fetchTasks()
+  };
+
+  return {
+    visible,
+    items,
+    date,
+    setDate,
+    setQuery,
+    error,
+    fetchTasks,
+    loading,
+    setPriority,
+    setStatus,
+    priority,
+    status,
+    updateItem,
+    addItem
+  };
 }
